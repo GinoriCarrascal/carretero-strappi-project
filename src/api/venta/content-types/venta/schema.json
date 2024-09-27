@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "ventas",
+  "info": {
+    "singularName": "venta",
+    "pluralName": "ventas",
+    "displayName": "venta",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "cantidad": {
+      "type": "integer"
+    },
+    "precioUnitario": {
+      "type": "decimal"
+    },
+    "importe": {
+      "type": "decimal"
+    },
+    "hamburguesa": {
+      "type": "string"
+    }
+  }
+}

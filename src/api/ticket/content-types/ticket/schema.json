@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tickets",
+  "info": {
+    "singularName": "ticket",
+    "pluralName": "tickets",
+    "displayName": "concepto",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string"
+    },
+    "tipo": {
+      "type": "string"
+    },
+    "direccion": {
+      "type": "text"
+    },
+    "hora_de_recojo": {
+      "type": "string"
+    },
+    "metodo": {
+      "type": "string"
+    },
+    "DNI": {
+      "type": "string"
+    },
+    "importe": {
+      "type": "decimal"
+    },
+    "telefono": {
+      "type": "biginteger"
+    }
+  }
+}
