@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "quejaosugerencias",
+  "info": {
+    "singularName": "quejaosugerencia",
+    "pluralName": "quejaosugerencias",
+    "displayName": "Quejaosugerencia"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "telefono": {
+      "type": "string"
+    },
+    "mensaje": {
+      "type": "text"
+    },
+    "fecha": {
+      "type": "string"
+    }
+  }
+}

@@ -590,6 +590,53 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetMinMax<
+        {
+          min: 1;
+          max: 50;
+        },
+        number
+      >;
+    code: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -741,140 +788,99 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface PluginI18NLocale extends Schema.CollectionType {
-  collectionName: 'i18n_locale';
+export interface ApiDetalleVentaDetalleVenta extends Schema.CollectionType {
+  collectionName: 'detalle_ventas';
   info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-          max: 50;
-        },
-        number
-      >;
-    code: Attribute.String & Attribute.Unique;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiDireccionDireccion extends Schema.CollectionType {
-  collectionName: 'direccions';
-  info: {
-    singularName: 'direccion';
-    pluralName: 'direccions';
-    displayName: 'direccion';
+    singularName: 'detalle-venta';
+    pluralName: 'detalle-ventas';
+    displayName: 'DetalleVenta';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Barrio: Attribute.String;
-    Distrito: Attribute.String;
-    Nombre: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::direccion.direccion',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::direccion.direccion',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiMenuMenu extends Schema.CollectionType {
-  collectionName: 'menus';
-  info: {
-    singularName: 'menu';
-    pluralName: 'menus';
-    displayName: 'Menu';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    nombre: Attribute.String;
-    tipo: Attribute.String;
-    precio: Attribute.Decimal;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiTicketTicket extends Schema.CollectionType {
-  collectionName: 'tickets';
-  info: {
-    singularName: 'ticket';
-    pluralName: 'tickets';
-    displayName: 'concepto';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    nombre: Attribute.String;
-    tipo: Attribute.String;
-    direccion: Attribute.Text;
-    hora_de_recojo: Attribute.String;
-    metodo: Attribute.String;
-    DNI: Attribute.String;
+    cantidad: Attribute.Integer;
+    PrecioUnitario: Attribute.Decimal;
     importe: Attribute.Decimal;
-    telefono: Attribute.BigInteger;
+    producto: Attribute.String;
+    fecha: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::ticket.ticket',
+      'api::detalle-venta.detalle-venta',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::ticket.ticket',
+      'api::detalle-venta.detalle-venta',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProductoProducto extends Schema.CollectionType {
+  collectionName: 'productos';
+  info: {
+    singularName: 'producto';
+    pluralName: 'productos';
+    displayName: 'Producto';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Nombre: Attribute.String;
+    descricpcion: Attribute.String;
+    precio: Attribute.Decimal;
+    categoria: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::producto.producto',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::producto.producto',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiQuejaosugerenciaQuejaosugerencia
+  extends Schema.CollectionType {
+  collectionName: 'quejaosugerencias';
+  info: {
+    singularName: 'quejaosugerencia';
+    pluralName: 'quejaosugerencias';
+    displayName: 'Quejaosugerencia';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    telefono: Attribute.String;
+    mensaje: Attribute.Text;
+    fecha: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::quejaosugerencia.quejaosugerencia',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::quejaosugerencia.quejaosugerencia',
       'oneToOne',
       'admin::user'
     > &
@@ -887,17 +893,23 @@ export interface ApiVentaVenta extends Schema.CollectionType {
   info: {
     singularName: 'venta';
     pluralName: 'ventas';
-    displayName: 'venta';
+    displayName: 'Venta';
     description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    cantidad: Attribute.Integer;
-    precioUnitario: Attribute.Decimal;
-    importe: Attribute.Decimal;
-    hamburguesa: Attribute.String;
+    cliente: Attribute.String;
+    tipoDOR: Attribute.Boolean;
+    direccion: Attribute.String;
+    hora_recojo: Attribute.String;
+    metodo_pago: Attribute.String;
+    DNI: Attribute.String;
+    importe_total: Attribute.Decimal;
+    telefono: Attribute.BigInteger;
+    fecha: Attribute.String;
+    estado: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -930,13 +942,13 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::i18n.locale': PluginI18NLocale;
-      'api::direccion.direccion': ApiDireccionDireccion;
-      'api::menu.menu': ApiMenuMenu;
-      'api::ticket.ticket': ApiTicketTicket;
+      'api::detalle-venta.detalle-venta': ApiDetalleVentaDetalleVenta;
+      'api::producto.producto': ApiProductoProducto;
+      'api::quejaosugerencia.quejaosugerencia': ApiQuejaosugerenciaQuejaosugerencia;
       'api::venta.venta': ApiVentaVenta;
     }
   }

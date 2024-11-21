@@ -4,7 +4,7 @@
   "info": {
     "singularName": "venta",
     "pluralName": "ventas",
-    "displayName": "venta",
+    "displayName": "Venta",
     "description": ""
   },
   "options": {
@@ -12,16 +12,34 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "cantidad": {
-      "type": "integer"
+    "cliente": {
+      "type": "string"
     },
-    "precioUnitario": {
+    "tipoDOR": {
+      "type": "boolean"
+    },
+    "direccion": {
+      "type": "string"
+    },
+    "hora_recojo": {
+      "type": "string"
+    },
+    "metodo_pago": {
+      "type": "string"
+    },
+    "DNI": {
+      "type": "string"
+    },
+    "importe_total": {
       "type": "decimal"
     },
-    "importe": {
-      "type": "decimal"
+    "telefono": {
+      "type": "biginteger"
     },
-    "hamburguesa": {
+    "fecha": {
+      "type": "string"
+    },
+    "estado": {
       "type": "string"
     }
   }
