@@ -788,6 +788,38 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiCalleCalle extends Schema.CollectionType {
+  collectionName: 'calles';
+  info: {
+    singularName: 'calle';
+    pluralName: 'calles';
+    displayName: 'calle';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    nombre_sector: Attribute.String;
+    precio: Attribute.Decimal;
+    dist_de_calles: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::calle.calle',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::calle.calle',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDetalleVentaDetalleVenta extends Schema.CollectionType {
   collectionName: 'detalle_ventas';
   info: {
@@ -946,6 +978,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::calle.calle': ApiCalleCalle;
       'api::detalle-venta.detalle-venta': ApiDetalleVentaDetalleVenta;
       'api::producto.producto': ApiProductoProducto;
       'api::quejaosugerencia.quejaosugerencia': ApiQuejaosugerenciaQuejaosugerencia;
